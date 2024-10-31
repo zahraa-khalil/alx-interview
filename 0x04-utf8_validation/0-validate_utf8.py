@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """utf8 module"""
 
+
 def validUTF8(data):
     # Number of bytes remaining in the current UTF-8 character
     bytes_remaining = 0
