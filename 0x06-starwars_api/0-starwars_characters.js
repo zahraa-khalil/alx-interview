@@ -28,11 +28,11 @@ function fetchCharacter (url) {
           const characterData = JSON.parse(data);
           resolve(characterData.name);
         } catch (error) {
-          reject(`Error parsing JSON from ${url}: ${error.message}`);
+          Error(`Error parsing JSON from ${url}: ${error.message}`);
         }
       });
     }).on('error', (err) => {
-      reject(`Request error for ${url}: ${err.message}`);
+      Error(`Request error for ${url}: ${err.message}`);
     });
   });
 }
@@ -47,7 +47,7 @@ const req = https.request(options, (resp) => {
     try {
       const jsonData = JSON.parse(data);
       // console.log('Parsed JSON data:', jsonData.characters);
-      const characters = jsonData.characters
+      const characters = jsonData.characters;
 
       Promise.all(characters.map(url => fetchCharacter(url)))
         .then(responses => {
@@ -58,7 +58,6 @@ const req = https.request(options, (resp) => {
         .catch(error => {
           console.error('An error occurred:', error);
         });
-
     } catch (error) {
       console.error('Error parsing JSON:', error.message);
     }
